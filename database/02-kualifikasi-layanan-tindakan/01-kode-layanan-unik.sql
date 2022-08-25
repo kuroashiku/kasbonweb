@@ -1,0 +1,1 @@
+ALTER TABLE rms_layanan ADD UNIQUE INDEX yan_kode_UNIQUE (yan_kode ASC)

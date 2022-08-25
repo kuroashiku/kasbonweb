@@ -1,0 +1,16 @@
+.accrep-h {
+    padding: 3px 6px 3px 6px;
+    font-weight: bold;
+    font-size: 14px;
+    vertical-align: middle;
+    border-top: 1px solid black;  
+    border-bottom: 1px solid black;
+    white-space: nowrap;
+    background-color: #eeeeee; 
+}
+.accrep-r {
+    padding: 3px 6px 3px 6px;
+    font-size: 14px;
+    vertical-align: middle;
+    white-space: nowrap;
+}

@@ -1,0 +1,28 @@
+# Always user https for secure connection
+# BEGIN AriefNetwork
+<IfModule mod_rewrite.c> 
+RewriteEngine On
+RewriteCond $1 !^(robots\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{HTTP:X-Forwarded-Proto} !http 
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/(?:\ Ballot169)?
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+</IfModule>
+# END AriefNetwork
+RewriteCond %{HTTP_HOST} ^rhomes\.induxs\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.rhomes\.induxs\.com$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/(?:\ Ballot169)?
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/www\.rhomes\.reendoo\.com\/" [R=301,L]
+
+DirectoryIndex index.php
+RewriteCond %{HTTPS} off 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
+
+AddHandler application/x-httpd-php52 .php .php5

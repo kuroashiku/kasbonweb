@@ -1,0 +1,1 @@
+update emp_sdm set sdm_status='A';

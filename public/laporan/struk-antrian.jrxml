@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="struk-antrian" language="groovy" pageWidth="226" pageHeight="283" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fece5a82-2e8f-4309-816f-f7a5dc7b6cea">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="qid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[call sp_receipt($P{qid});]]>
+	</queryString>
+	<field name="hartgljam" class="java.lang.String"/>
+	<field name="qregnum" class="java.lang.String"/>
+	<field name="qsrvnum" class="java.lang.String"/>
+	<field name="qregrest" class="java.lang.Long"/>
+	<field name="qsrvrest" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="243" splitType="Stretch">
+			<image>
+				<reportElement x="4" y="4" width="45" height="45" uuid="f92ac2f9-ec3f-4e02-b0bc-4d8e24f79546"/>
+				<imageExpression><![CDATA["rsa-logo-small.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="61" y="0" width="125" height="18" uuid="8ea4097b-d402-4d47-87f9-34646500063c"/>
+				<textElement>
+					<font fontName="Helvetica" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RSUD ASEMBAGUS SITUBONDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="19" width="125" height="31" uuid="72ad68c2-d5bf-4a8b-ba45-695b85051266"/>
+				<textElement>
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<text><![CDATA[Jl. Raya Asembagus No. 207
+Telp (0338) 451044
+SITUBONDO 68373]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="71" width="186" height="19" uuid="f55f5be9-fad4-4a31-be36-03f8b34f6a6d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hartgljam}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="186" height="12" uuid="ddaadcbb-b23f-43f2-964a-e4757472d271"/>
+				<textElement textAlignment="Center">
+					<font fontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Nomor antrian pendaftaran anda:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="102" width="186" height="17" uuid="0583e8aa-0dcc-4168-8597-cc4994f9a585"/>
+				<textElement textAlignment="Center">
+					<font fontName="Helvetica" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASIEN UMUM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="119" width="186" height="31" uuid="5b4bcebd-2c35-4b68-b6ca-b76c9d3a260e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="28" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qregnum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="150" width="186" height="17" uuid="1f32d5d9-b7a3-4e99-be90-13a80756372e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Nomor antrian klinik anda:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="167" width="186" height="31" uuid="16cae3d1-db36-4d6d-848d-d750fedd379b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qsrvnum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="208" width="186" height="14" uuid="a1760108-7de5-4bc7-8564-4e4ac32f8b2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Terima kasih atas kesediaannya menunggu]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="222" width="186" height="10" uuid="7e29e26c-87b5-4700-ac8f-e266c144aa35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Yang masih antri pendaftaran : "+$F{qregrest}+" orang"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="232" width="184" height="10" uuid="1f643a10-df5d-4a27-868b-5207bafc1e6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Yang masih antri di klinik : "+$F{qsrvrest}+" orang"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

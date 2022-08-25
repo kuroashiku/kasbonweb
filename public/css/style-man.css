@@ -1,0 +1,73 @@
+@font-face {
+    font-family: Rhomesfonts;
+    src: url('font/CALIBRI.TTF');
+}
+
+*:not(.fa){
+    font-family:Rhomesfonts;
+    font-size: 14px;
+}
+  
+.combobox-item {
+    padding:2px 5px 2px 5px;
+}
+.l-btn {
+    text-align: left;
+    background: #008ba0;
+    color: #fff;
+    border-width: 0px 0px 1px 0px;
+    border-color: transparent;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0px 2px 1px 0px;
+}
+.l-btn-disabled {
+    background:gray;
+}
+.l-btn-plain {
+    background: transparent;
+    color: #000;
+    border-width: 0;
+    margin: 0px 2px 1px 0px;
+}
+.l-btn:hover {
+    background: #ffe96e;
+    color: #000000;
+    border-width: 0px 0px 1px 0px;
+    border-color: transparent;
+    margin: 0px 2px 1px 0px;
+}
+.l-btn-icon {
+    font-size: 14px;
+}
+.l-btn-icon-left .l-btn-icon {
+    left: 6px;
+    top: 16px;
+}
+.pagination-first:before {
+    content: "\f2da";
+    display: inline-block;
+    font-family: FontAwesome;
+    position: absolute;
+    right: -1.5em;
+}
+.textbox-readonly .textbox-text {
+    background:#fff6c1;
+    color:#aaaaaa;
+}
+.datagrid-row {
+    height:25px;
+}
+.textbox textarea.textbox-text {
+    white-space: pre-wrap;
+    font-family: Rhomesfonts;
+    font-size: 14px;
+}
+.combobox-item {
+    padding:2px 5px 2px 5px;
+}
+.rujukan-field-name {
+    font-weight:bold;
+    color:#000088;
+}

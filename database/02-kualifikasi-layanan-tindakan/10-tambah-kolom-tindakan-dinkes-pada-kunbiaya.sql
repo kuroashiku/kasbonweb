@@ -1,0 +1,1 @@
+ALTER TABLE rms_kunbiaya ADD COLUMN kbi_dtin_id INT NULL AFTER kbi_tin_id

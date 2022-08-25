@@ -1,0 +1,134 @@
+#dlg-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#dlg-toolbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #ECF3FF;
+    border-bottom: solid 1px #DDDDDD;
+    height: 50px;
+    padding: 0.5rem
+}
+
+#dlg-toolbar .title{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+#dlg-footer{
+    width: 100%;
+    min-height: 225px;
+    border-top: solid 1px #DDDDDD;
+    overflow-x: auto;
+}
+
+#dlg-footer .toolbar{
+    height:40px;
+    padding:8px;
+}
+
+#dlg-body{
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+#dlg-sidebar{
+    width: 140px;
+    background-color: #FAFAFA;
+    overflow: auto;
+    padding: 4px;
+}
+
+#dlg-sidebar .dlg-tab-label{
+    color: #C1C1C1;
+    font-weight: bold;
+    margin:0 10px 4px 10px;
+    font-size: small;
+}
+
+#dlg-sidebar .dlg-tab-item{
+    padding: 0 10px;
+    height: 25px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    font-size: small;
+}
+
+#dlg-sidebar .dlg-tab-group{
+    margin-bottom: 12px;
+}
+
+#dlg-sidebar .dlg-tab-item:hover, #dlg-sidebar .dlg-tab-item.active{
+    background-color: #f0f0f0;
+}
+
+#dlg-content{
+    flex-grow: 1;
+    overflow:auto;
+    padding: 20px;
+    overflow: auto;
+}
+
+#dlg-content .dlg-row{
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+#dlg-content h2{
+    font-size: 16px;
+}
+
+#dlg-content h1{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#dlg-wrapper .dlg-row.mb-sm{
+    margin-bottom: 0.5rem;
+}
+#dlg-wrapper .dlg-row.last-row{
+    margin-bottom: 2rem;
+}
+#dlg-wrapper .label{
+    padding-top: 0.25rem;
+    width: 200px;
+}
+#dlg-wrapper .label-sm{
+    padding-top: 0.3rem;
+    width: 20px;
+}
+#dlg-wrapper .suffix{
+    padding-top: 0.25rem;
+    margin-left: 0.5rem;
+}
+#dlg-wrapper .dlg-row .field{
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+#dlg-wrapper .textbox-label{
+    display: block !important;
+    white-space: pre-wrap;
+    width:auto !important;
+}
+#dlg-wrapper .clickbox{
+    display: flex;
+    margin-right: 8px;
+    margin-bottom: 8px;    
+}
+
+#dlg-wrapper .flex-container{
+    display: flex;
+}
+
+#dlg-wrapper .flex-container .flex-col{
+    width: 50%;
+}

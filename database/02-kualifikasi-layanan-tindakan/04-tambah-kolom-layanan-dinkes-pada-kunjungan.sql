@@ -1,0 +1,1 @@
+ALTER TABLE rms_kunjungan ADD COLUMN kun_dyn_id INT NULL AFTER kun_yan_id;
