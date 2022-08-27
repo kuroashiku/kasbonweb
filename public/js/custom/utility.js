@@ -45,6 +45,32 @@ function showLogin() {
         href:'main/login'
     });
 }
+function showRegisterLogin(nick) {
+    $('#register-dlg').dialog({
+        title:'Registrasi',
+        iconCls:'icon-man',
+        width:300,
+        height:230,
+        closable:false,
+        border:true,
+        modal:true,
+        href:'main/register'
+    });
+    $('#register-dlg').data('id', nick ).dialog('open');
+}
+function showUpdateLogin(nick) {
+    $('#updatelogin-dlg').dialog({
+        title:'Update Login',
+        iconCls:'icon-man',
+        width:300,
+        height:230,
+        closable:false,
+        border:true,
+        modal:true,
+        href:'main/updatelogin'
+    });
+    $('#updatelogin-dlg').data('id', nick ).dialog('open');
+}
 
 function openTab(index, id, title, href, closable)
 {

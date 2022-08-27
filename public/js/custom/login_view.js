@@ -8,6 +8,15 @@ $(function() {
             loginSubmit(u, p);
         }
     });
+    $('#login-btn-update').linkbutton({
+        iconCls:'fa fa-check-circle fa-lg',
+        text:'Update',
+        onClick:function() {
+            var u = $("#login-form-username").textbox('getValue');
+            $('#login-dlg').dialog('close');
+            showUpdateLogin(u);
+        }
+    });
     $("#login-btn-cancel").linkbutton({
         iconCls:'fa fa-times-circle fa-lg',
         text:'Cancel',
