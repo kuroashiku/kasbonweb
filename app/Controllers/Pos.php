@@ -28,4 +28,8 @@ class Pos extends Controller
     {
         return view('sales_view');
     }
+    public function po()
+    {
+        return view('po_view');
+    }
 }

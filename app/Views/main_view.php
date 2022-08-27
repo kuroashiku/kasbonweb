@@ -22,6 +22,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/snackbar.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/bootstrap.min.css') ?>">
     <script type="text/javascript" src="<?= base_url('js/custom/login_view.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/custom/updatelogin_view.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/custom/registrasi_view.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('js/custom/utility.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('js/custom/snackbar_view.js') ?>"></script>
     <style>
@@ -97,6 +99,8 @@
     <div>
         
     <div id="login-dlg"></div>
+    <div id="updatelogin-dlg"></div>
+    <div id="register-dlg"></div>
     <div id="snackbar-container"></div>
     <!-- <div id="main-footer" style="padding:0px 5px;font-size:14px">
         <table width="100%">

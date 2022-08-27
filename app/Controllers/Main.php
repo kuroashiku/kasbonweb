@@ -86,6 +86,16 @@ class Main extends BaseController
         return view('login_view');
     }
 
+    public function updatelogin()
+    {
+        return view('update_login_view');
+    }
+
+    public function register()
+    {
+        return view('register_view');
+    }
+
     public function pos()
     {
         return view('pos_view');

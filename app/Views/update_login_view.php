@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?= base_url('js/custom/login_view.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('js/custom/updatelogin_view.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('js/custom/utility.js') ?>"></script>
 <style type="text/css">
     .textbox-readonly .textbox-text {
@@ -9,13 +9,11 @@
 <div class="easyui-panel" data-options="fit:true,border:false"
     style="padding:10px">
     <div style="margin-bottom:0px">
-        <input id="login-form-username">
+        <input id="uplog-form-username">
     </div>
     <div style="margin-bottom:15px">
-        <input id="login-form-password">
+        <input id="uplog-form-password">
     </div>
-    <div id="login-btn-submit"></div>
-    <div id="login-btn-update"></div>
-    <!-- <div id="login-btn-register"></div> -->
-    <div id="login-btn-cancel"></div>
+    <div id="uplog-btn-submit"></div>
+    <div id="uplog-btn-cancel"></div>
 </div>
