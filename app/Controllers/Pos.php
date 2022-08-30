@@ -32,4 +32,12 @@ class Pos extends Controller
     {
         return view('po_view');
     }
+    public function receive()
+    {
+        return view('receive_view');
+    }
+    public function po_add()
+    {
+        return view('po_add_view');
+    }
 }
