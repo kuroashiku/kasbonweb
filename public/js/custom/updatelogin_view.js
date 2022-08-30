@@ -1,6 +1,10 @@
 $(function() {
+    
     var ul = $('#updatelogin-dlg').data('id');
     console.log(ul)
+    setTimeout(function(){
+        $('#uplog-form-username').textbox('setValue',ul)
+    },100);
     $('#uplog-btn-submit').linkbutton({
         iconCls:'fa fa-check-circle fa-lg',
         text:'Change',
@@ -21,7 +25,7 @@ $(function() {
     $("#uplog-btn-cancel").linkbutton({
         iconCls:'fa fa-times-circle fa-lg',
         text:'Cancel',
-        onClick:function() {$('#updatelogin-dlg').dialog('close')}
+        onClick:function() {$('#updatelogin-dlg').dialog('close');    console.log(document.cookie)}
     });
     $('#uplog-form-username').textbox({
         label:'User Name',
@@ -44,5 +48,5 @@ $(function() {
             }
         })
     });
-    $('#uplog-form-username').textbox('textbox').focus();
+    // $('#uplog-form-username').textbox('textbox').focus();
 });

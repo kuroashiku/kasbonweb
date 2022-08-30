@@ -44,5 +44,5 @@ $(function() {
             }
         })
     });
-    $('#regis-form-username').textbox('textbox').focus();
+    // $('#regis-form-username').textbox('textbox').focus();
 });

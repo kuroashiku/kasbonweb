@@ -248,7 +248,8 @@
                     itm_photo:$('#ita-form-gambar-edit').textbox('getValue'),
                     itm_lok_id:globalConfig.login_data.data.kas_lok_id,
                     itm_id:indexita==-1?-1:$('#ita-form-id').textbox('getValue'),
-                    itm_gallery:1
+                    itm_gallery:1,
+                    itm_pakaistok:1
                 },
                 url:getRestAPI('item/save'),
                 success:function(retval) {

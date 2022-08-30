@@ -16,7 +16,7 @@
 	<input id="tanggalgrafik" name="tanggalgrafik" class="easyui-datebox ui-disabled" value="<?php echo date('Y-m'); ?>" maxlength="2"/>
 	<div id="tombolgrafik"></div>
 </div>
-<table width="100%" height="50%" border="0"
+<table width="100%" height="100%" border="0"
     style="font-size:14px;font-family:sans-serif;padding:10px">
     <tr>
         <td width="100%" id="bigten-chart" colspan="2">
@@ -210,7 +210,7 @@
                     	// },
 						title: {
 							display: true,
-							text: globalConfig.login_data?(globalConfig.login_data?(globalConfig.login_data.lang==1&&globalConfig.login_data.lang?'Total Number Of Patient In Specific Clinic':'Total Pasien Berada di Layanan Tertentu'):'Total Pasien Berada di Layanan Tertentu'):'Total Pasien Berada di Layanan Tertentu',
+							text: 'Histori pembayaran',
 							fontSize: 20,
 						},
 						legend: {

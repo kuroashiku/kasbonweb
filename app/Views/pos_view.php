@@ -194,7 +194,7 @@ span.combo{
                     </div>
                 </div>
             </div>
-            <div class="mainnotif" data-options="region:'east',split:true, collapsed: true" style="width:300px">
+            <div class="mainnotif" data-options="region:'east',split:true" style="width:0px">
                 <div id="notif-grid"></div>
                 <div id="notif-grid-tb" style="padding:5px">
                     <div id="notif-label"></div>
@@ -208,6 +208,7 @@ span.combo{
             <div id="pos-transaksi-dlg"></div>
             <div id="pos-sales-dlg"></div>
             <div id="pos-po-dlg"></div>
+            <div id="pos-rcv-dlg"></div>
             </div>
         </div>    
     </div>
@@ -283,7 +284,6 @@ span.combo{
                         },
                         url:getRestAPI('piutang/save')
                     })
-                    console.log(obj)
                     resetall();
                     jatuhtempoflag=0;
                 }
@@ -324,6 +324,9 @@ span.combo{
     $('#pos-btn-po').click(function() {
         posPO();
     });
+    $('#pos-btn-receive').click(function() {
+        posRcv();
+    });
     $('#pos-btn-sales').linkbutton({
         iconCls:'fa fa-chart-bar fa-lg',
         onClick:function() {posSales();}
@@ -361,7 +364,6 @@ span.combo{
             $('#pos-grid').datagrid('loadData',globalrow);
             $('#totalkurang').textbox('setValue',"kurang="+'Rp.'+currencyFormat(globalharga)+',00');
             $('#pos-grid').datagrid('selectRow',indexRow);
-            console.log(row)
         },
     });
     $('#pos-btn-clear').linkbutton({
@@ -419,9 +421,6 @@ span.combo{
                 }
                 globalharga=parseInt(globalharga)+parseInt(v.total)
             })
-            console.log(globalharga)
-            console.log(globalrow)
-            console.log(globalid)
             $('#pos-grid').datagrid('loadData',globalrow);
             $('#pos-total').textbox('setValue',globalharga);
             $('#totalkurang').textbox('setValue',"kurang="+'Rp.'+currencyFormat(globalharga)+',00');
@@ -482,7 +481,7 @@ span.combo{
         }
     });
     $('#notif-label').textbox({
-        prompt:'Ditemukan multiitem dari pencarian',
+        prompt:'Ditemukan multiitem',
         width:300, 
         readonly:true   
     });
@@ -622,7 +621,11 @@ span.combo{
                             v.tipe=1;
                             globalnotif.push(v);
                         })
-                        $('#pos-layout').layout('expand','east');
+                        $('#pos-layout').layout('panel','east').panel('resize',{
+                            width: window.innerWidth/4
+                        });
+                        $('#pos-layout').layout('resize');
+                        //$('#pos-layout').layout('expand','east');
                         $('#globalkurang').textbox('setValue',globalharga)
                         strnotif+="<br> Pastikan memasukkan data yang lengkap, atau yang mudah dikenali misalkan 'degan' "
                         //$.messager.alert("Error multi item", strnotif);
@@ -712,7 +715,11 @@ span.combo{
                             v.tipe=2;
                             globalnotif.push(v);
                         })
-                        $('#pos-layout').layout('expand','east');
+                        $('#pos-layout').layout('panel','east').panel('resize',{
+                            width: window.innerWidth/4
+                        });
+                        $('#pos-layout').layout('resize');
+                        // $('#pos-layout').layout('expand','east');
                         strnotif+="<br> Pastikan memasukkan nama yang lengkap"
                         //$.messager.alert("Error multi nama kustomer", strnotif);
                         $('#notif-grid').datagrid('loadData',globalnotif);
@@ -749,6 +756,7 @@ span.combo{
                         var notifnama="";
                         
                         $.each(obj.data,function(i,v){
+                            
                             if(v.cus_nama==null)
                             v.cus_nama='NoNama'
                             strnotif+=i+1+"."+v.cus_nama+", ";
@@ -765,7 +773,11 @@ span.combo{
                             globalnotif.push(obj.data);
                             notifnama='';
                         })
-                        $('#pos-layout').layout('expand','east');
+                        $('#pos-layout').layout('panel','east').panel('resize',{
+                            width: window.innerWidth/4
+                        });
+                        $('#pos-layout').layout('resize');
+                        // $('#pos-layout').layout('expand','east');
                         strnotif+="<br> Pastikan memilih draft didalam draft yang hanya 1 memesannya atau cari catatan"
                         //$.messager.alert("Error multi draft", strnotif);
                         $('#notif-grid').datagrid('loadData',globalnotif);
@@ -778,7 +790,6 @@ span.combo{
                         globalrow=[];
                         $('#pos-grid').datagrid('loadData',globalrow);
                         $.each(obj.data[0].notaitems,function(i,v){
-                            console.log(v)
                             v.disnom=0;
                             v.konvidx=0;
                             v.total=parseInt(v.satuan1hrg)*(parseInt(v.qty))*(1-(v.diskon/100));
@@ -791,11 +802,30 @@ span.combo{
                             v.tipe=3;
                             globalrow.push(v);
                             globalharga+=parseInt(v.total)
+                            
                         })
                         $('#searchkustomer').textbox('setValue',obj.data[0].cus_nama)
                         $('#pos-kustomer-id').textbox('setValue',obj.data[0].cus_id)
                         $('#pos-total').textbox('setValue',globalharga);
+                        
                         $('#pos-grid').datagrid('loadData',globalrow);
+                        // $.each(globalrow,function(i,v){
+                        //     $.ajax({
+                        //         type:'POST',
+                        //         data:{lok_id:globalConfig.login_data.data.kas_lok_id,
+                        //         key_val:v.itm_nama
+                        //         },
+                        //         url:getRestAPI('item/read'),
+                        //         success:function(retval) {
+                        //             var obj = JSON.parse(retval);
+                        //             v.stok2=obj.data[0].itm_stok
+                        //             if(i==2)
+                        //             globalrow.pop();
+                        //         }
+                        //     });
+                        // })
+                        // $('#pos-grid').datagrid('loadData',globalrow);
+                        // console.log(globalrow[2])
                         $('#calculator').textbox('setValue','Dibayar=Rp.'+currencyFormat(globaluang)+',00')
                         $('#totalkurang').textbox('setValue',"kurang="+'Rp.'+currencyFormat(globalharga)+',00')
                         $('#pos-btn-now').linkbutton({text:currencyFormat(globalharga)});
@@ -901,7 +931,11 @@ span.combo{
                 $('#pos-btn-now').linkbutton({text:currencyFormat(globalharga)});
                 $('#searchitem').searchbox('setValue','')
             }
-            $('#pos-layout').layout('collapse','east');
+            // $('#pos-layout').layout('collapse','east');
+            $('#pos-layout').layout('panel','east').panel('resize',{
+                width: 1
+            });
+            $('#pos-layout').layout('resize');
         } 
     })
     $('#pos-grid').datagrid({
@@ -947,10 +981,27 @@ span.combo{
             formatter: function(value, row) {return 'Rp.'+currencyFormat(row.total)+',00'}
         }]],
         data:globalrow,
+        // onLoadSuccess:function(data) {
+        //     console.log(data)
+        //     $.ajax({
+        //         type:'POST',
+        //         data:{lok_id:globalConfig.login_data.data.kas_lok_id,
+        //         key_val:data.itm_nama
+        //         },
+        //         url:getRestAPI('item/read'),
+        //         success:function(retval) {
+        //             var obj = JSON.parse(retval);
+                    
+        //             if(parseInt(obj.data[0].itm_stok)<=parseInt(data.qty))
+        //             console.log();
+        //             $('#pos-grid').datagrid('loadData',globalrow);
+        //         }
+        //     });
+        // },
         onSelect:function(index,row){
+            console.log(row)
             $('#pos-qty').numberbox('setValue',parseInt(row.qty))
             $('#pos-dsc').numberbox('setValue',parseInt(row.diskon));
-            console.log(row)
             globalsatuan=[];
             globalid=row.itm_id;
             globalsatuan.push({"sat_id":1,"sat_nama":row.satuan1,"sat_hpp":row.satuan1hpp,"sat_hrg":row.satuan1hrg});
@@ -960,19 +1011,25 @@ span.combo{
             globalsatuan.push({"sat_id":3,"sat_nama":row.satuan3,"sat_hpp":row.satuan3hpp,"sat_hrg":row.satuan3hrg,"sat_of":row.satuan3of1});
             
             $('#pos-btn-satuan').combobox('loadData',globalsatuan);
-            if(row.satuan0==row.itm_satuan1)
-
-            $('#pos-btn-satuan').combobox('setText',row.satuan0);
+            if(row.satuan0==row.satuan1)
+            $('#pos-btn-satuan').combobox('setText',row.satuan1);
+            else if(row.satuan0==row.satuan2)
+            $('#pos-btn-satuan').combobox('setText',row.satuan2);
+            else if(row.satuan0==row.satuan3)
+            $('#pos-btn-satuan').combobox('setText',row.satuan3);
         }
     });
     $('#pos-btn-05').linkbutton({
-        text:'500',
+        text:'C',
         height:111,
         width:111,
         onClick:function() {
-            bayaruang(500)
+            globaluang=0;
+            $('#calculator').textbox('setValue',"Dibayar="+'Rp.'+currencyFormat(globaluang)+',00');
+            $('#totalkurang').textbox('setValue',"kurang="+'Rp.'+currencyFormat(globalharga)+',00');
+            $('#totalkembalian').textbox('setValue',"kembalian="+currencyFormat(globalkembalian)+',00');
         }
-    }).css('text-align', 'center').css('background-color','#89a692');
+    }).css('text-align', 'center').css('background-color','#ed0000');
     $('#pos-btn-1').linkbutton({
         text:'1.000',
         height:111,
@@ -996,7 +1053,7 @@ span.combo{
         onClick:function() {
             bayaruang(5000)
         }
-    }).css('text-align', 'center').css('background-color','#fbd4a9');
+    }).css('text-align', 'center').css('background-color','#eac398');
     $('#pos-btn-10').linkbutton({
         text:'10.000',
         height:111,
@@ -1049,7 +1106,6 @@ span.combo{
                 url:getRestAPI('draftnota/delete'),
             })
         }
-        console.log(globalrow)
         $.ajax({
             type:'POST',
             data:{rows:globalrow,
@@ -1091,7 +1147,6 @@ span.combo{
         $('#totalkembalian').textbox('setValue',"kembalian="+'Rp.'+currencyFormat(globalkembalian)+',00')
     }
     function posPay(){
-        console.log(globalrow)
         if(globaluang<=0)
             $.messager.alert("Error tidak bayar", "Mulailah membayar");
         else if((parseInt(globalharga)>parseInt(globaluang))&&!parseInt($('#pos-kustomer-id').textbox('getValue'))){
@@ -1270,6 +1325,19 @@ span.combo{
             resizable:true,
             maximizable:true,
             href:'pos/po'
+        });
+    }
+    function posRcv(){
+        $('#pos-rcv-dlg').dialog({
+            title:'Master Receive',
+            width:800,
+            height:400,
+            closable:true,
+            border:true,
+            modal:true,
+            resizable:true,
+            maximizable:true,
+            href:'pos/receive'
         });
     }
     ///////fungsi penunjang

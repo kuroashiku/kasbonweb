@@ -52,5 +52,5 @@ $(function() {
             }
         })
     });
-    $('#login-form-username').textbox('textbox').focus();
+    // $('#login-form-username').textbox('textbox').focus();
 });
