@@ -12,8 +12,12 @@ class Home extends BaseController
 	public function index()
 	{
 		
-		if($this->isMobile())
-			echo "Maaf, aplikasi ini masih belum compatible dengan mobile";
+		if($this->isMobile()){
+		echo "Maaf, akses aplikasi melalui mobile bisa dilakukan dg install APK kasbon -- sila kontak Admin ";
+		echo nl2br(" \n\n ");
+ 
+		echo nl2br ('<a href="http://aplikasi.biz/"&nbsp &nbsp &nbsp &nbsp \n\n> pls go thru mobile demo link, Click ! </a>');
+		}
 		else
 			return view('main_view');
  	}

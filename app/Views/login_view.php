@@ -15,7 +15,6 @@
         <input id="login-form-password">
     </div>
     <div id="login-btn-submit"></div>
-    <div id="login-btn-update"></div>
     <!-- <div id="login-btn-register"></div> -->
     <div id="login-btn-cancel"></div>
 </div>

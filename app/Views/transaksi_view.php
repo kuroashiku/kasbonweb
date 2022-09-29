@@ -314,6 +314,7 @@
                 }]],
                 data:obj.data,
                 onSelect:function(index, row) {
+                    
                     $('#trn-pay').numberbox('setValue','');
                     $('#trn-bunga').numberbox('setValue','');
                     $.ajax({
@@ -324,6 +325,7 @@
                         url:getRestAPI('piutang/read'),
                         success:function(retval) {
                             var obj = JSON.parse(retval);
+                            console.log(obj)
                             if(obj.data[0])
                             {
                                 globalbunga=obj.data[0].cil_bunga;

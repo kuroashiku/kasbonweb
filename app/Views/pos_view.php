@@ -19,7 +19,7 @@
     border-radius: 10px;
     cursor:pointer;
     width:99px;
-    height:60px;
+    height:58px;
     background:#ff3a3a;
     display:inline-block;
     color:#fff;
@@ -70,17 +70,23 @@ span.datebox{
     height:0px;
     border-color:transparent;
 }
-a.combo-arrow{
+span.m-btn-downarrow{
+    display:none;
+}
+span.l-btn-icon-left{
+    width:26px
+}
+/* a.combo-arrow{
     padding-left:65px;
     background: #fff;
 }
 span.combo{
     width:65px !important;
-}
+} */
 
 
 </style>
-<div class="easyui-layout" data-options="fit:true" id="post">
+<div class="easyui-layout" data-options="fit:true">
     <div data-options="region:'east',split:false" style="width:355px;">
         <div class="easyui-layout" data-options="fit:true" >
             <div data-options="region:'center',border:false">
@@ -119,7 +125,7 @@ span.combo{
         </div>
     </div>
     <div data-options="region:'center'">
-        <div class="easyui-layout" data-options="fit:true" id="pos-layout">
+        <div class="easyui-layout" data-options="fit:true">
             <div data-options="region:'north',split:false" style="height:130px;background-color:#8ae0ed;">
                 <table width="100%">
                 <tr>
@@ -142,15 +148,14 @@ span.combo{
                 </tr>
                 </table>
             </div>
-            <div data-options="region:'center'" id="tess">
-                <div class="easyui-layout" data-options="fit:true">
-                    <div data-options="region:'center'">
+            <div data-options="region:'center'" >
+                <div class="easyui-layout" data-options="fit:true" id="pos-layout">
+                    <div data-options="region:'north'"style="height:418px">
                         <div id="pos-grid"></div>
                         <div id="pos-grid-tb" style="padding:5px">
                             <input id="searchitem" style="width:300px"></input>
                             <div id="pos-item-gambar" title="Tambah Item"></div>
                             <div id="pos-kustomer-nama"></div>
-                            
                             <div id="pos-btn-clear" title="Bersihkan modul"></div>
                             <div id="pos-btn-pin" title="Simpan ke draft"></div>
                             <div id="pos-btn-leftqty" title="Kurangkan kuantiti"></div>
@@ -161,29 +166,39 @@ span.combo{
                             <div id="pos-btn-rightdsc" title="Tambahkan diskon"></div>
                             <div id="pos-kustomer-id"></div>
                             <div id="pos-btn-satuan"></div>
-                            <div id="pos-btn-sales">
+                            <div id="pos-btn-sales"></div>
+                            <a href="#" class="easyui-menubutton" data-options="menu:'#menupos',iconCls:'fa fa-cog'"></a>
+                            <div id="menupos" style="width:180px;">
+                                <div data-options="id:'menukustomer', iconCls:'fa fa-users'">Master Kustomer</div>
+                                <div data-options="id:'menuitem',iconCls:'fa fa-gift'">Master Item</div>
+                                <div data-options="id:'menukonversi',iconCls:'fa fa-boxes'">Master Konversi</div>
+                                <div data-options="id:'menutransaksi',iconCls:'fa fa-clipboard'">Transaksi</div>
+                                <div data-options="id:'menupo',iconCls:'fa fa-luggage-cart'">PO</div>
+                                <div data-options="id:'menurcv',iconCls:'fa fa-handshake'">Penerimaan</div>
+                                <div class="menu-sep"></div>
+                                <div data-options="id:'updatepassword'">Update Password</div>
                             </div>
                         </div>
                     </div>
-                    <div data-options="region:'south'"style="height:70px">
+                    <div data-options="region:'center'">
                         <div class="easyui-layout" data-options="fit:true">
                             <div data-options="region:'center',border:false">
-                                <button class="btn pos-menu" id="pos-btn-kustomer-add">
+                                <button class="btn pos-menu" id="pos-btn-kustomer-add" title="Master Kustomer">
                                     <div class="fa fa-users pos-icon"></div>
                                 </button>
-                                <button class="btn pos-menu" id="pos-btn-item-add">
+                                <button class="btn pos-menu" id="pos-btn-item-add" title="Master Item">
                                     <div class="fa fa-gift pos-icon"></div>
                                 </button>
-                                <button class="btn pos-menu" id="pos-btn-konversi">
+                                <button class="btn pos-menu" id="pos-btn-konversi" title="Konversi">
                                     <div class="fa fa-boxes pos-icon"></div>
                                 </button>
-                                <button class="btn pos-menu" id="pos-btn-transaksi">
+                                <button class="btn pos-menu" id="pos-btn-transaksi" title="Transaksi">
                                     <div class="fa fa-clipboard pos-icon"></div>
                                 </button>
-                                <button class="btn pos-menu" id="pos-btn-po">
+                                <button class="btn pos-menu" id="pos-btn-po" title="Purchase Order">
                                     <div class="fa fa-luggage-cart pos-icon"></div>
                                 </button>
-                                <button class="btn pos-menu" id="pos-btn-receive">
+                                <button class="btn pos-menu" id="pos-btn-receive" title="Penerimaan Barang">
                                     <div class="fa fa-handshake pos-icon"></div>
                                 </button>
                             </div>
@@ -192,23 +207,25 @@ span.combo{
                             </div>
                         </div>
                     </div>
+                    <div class="mainnotif" data-options="region:'south',split:true" style="height:1px">
+                        <div id="notif-grid"></div>
+                        <div id="notif-grid-tb" style="padding:5px">
+                            <div id="notif-label"></div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-            <div class="mainnotif" data-options="region:'east',split:true" style="width:0px">
-                <div id="notif-grid"></div>
-                <div id="notif-grid-tb" style="padding:5px">
-                    <div id="notif-label"></div>
-                </div>
-            </div>
+            
             <div id="kumpulan-dialog">
-            <div id="pos-kustomer-add-dlg"></div>
-            <div id="pos-item-add-dlg"></div>
-            <div id="pos-item-gambar-dlg"></div>
-            <div id="pos-konversi-dlg"></div>
-            <div id="pos-transaksi-dlg"></div>
-            <div id="pos-sales-dlg"></div>
-            <div id="pos-po-dlg"></div>
-            <div id="pos-rcv-dlg"></div>
+                <div id="pos-kustomer-add-dlg"></div>
+                <div id="pos-item-add-dlg"></div>
+                <div id="pos-item-gambar-dlg"></div>
+                <div id="pos-konversi-dlg"></div>
+                <div id="pos-transaksi-dlg"></div>
+                <div id="pos-sales-dlg"></div>
+                <div id="pos-po-dlg"></div>
+                <div id="pos-rcv-dlg"></div>
             </div>
         </div>    
     </div>
@@ -241,6 +258,34 @@ span.combo{
     var bayarflag=0;
     var jatuhtempoflag=0;
     var refreshIntervalId;
+    var tempglobalharga=0;
+    $('#menupos').menu({
+        onClick:function(item) {
+            switch(item.id) {
+            case 'menukustomer':
+                posAddKustomer();
+                break;
+            case 'menuitem':
+                posAddItem();
+                break;
+            case 'menukonversi':
+                posKonversi();
+                break;
+            case 'menutransaksi':
+                posTransaksi();
+                break;
+            case 'menupo':
+                posPO();
+                break;
+            case 'menurcv':
+                posRcv();
+                break;
+            case 'updatepassword':
+                var usernamenow=(document.cookie.split(";"))[0].split("=")
+                showUpdateLogin(usernamenow[1]);
+            }
+        }
+    });
     $('#pos-jatuhtempo').datebox({
         width:110,
         editable:false,
@@ -341,7 +386,6 @@ span.combo{
         onClick:function(row) {
             var selectedRow = $('#pos-grid').datagrid('getSelected');
             var indexRow = $('#pos-grid').datagrid('getRowIndex', selectedRow);
-            globalharga=0;
             $.each(globalrow,function(i,v){
                 if(v.itm_id==selectedRow.itm_id)
                 {
@@ -357,7 +401,9 @@ span.combo{
                     $('#pos-qty').numberbox('setValue',parseInt(v.qty))
                     $('#pos-dsc').numberbox('setValue',parseInt(v.diskon));
                 }
-                globalharga=globalharga+parseInt(v.total)
+                console.log(row.sat_def)
+                globalharga=parseInt(tempglobalharga)+parseInt(v.total)
+                //globalharga=parseInt(globalharga)+v.total
             })
             $('#pos-btn-now').linkbutton({text:currencyFormat(globalharga)});
             $('#pos-total').textbox('setValue',globalharga);
@@ -574,6 +620,7 @@ span.combo{
         height:24,
         readonly:true   
     });
+    $('#pos-total').textbox('setValue',globalharga);
     $('#calculator').textbox('setValue','Dibayar=Rp.'+currencyFormat(globaluang)+',00');
     $('#totalkurang').textbox('setValue',"kurang="+'Rp.'+currencyFormat(globalharga)+',00');
     $('#totalkembalian').textbox('setValue',"kembalian="+currencyFormat(globalkembalian)+',00');
@@ -616,13 +663,15 @@ span.combo{
                             v.satuan3=v.itm_satuan3;
                             v.satuan3hpp=v.itm_satuan3hpp;
                             v.satuan0of1=1;
+                            v.satuan2of1=v.itm_satuan2of1;
+                            v.satuan3of1=v.itm_satuan3of1;
                             v.id=v.itm_id;
                             v.nama=v.itm_nama;
                             v.tipe=1;
                             globalnotif.push(v);
                         })
-                        $('#pos-layout').layout('panel','east').panel('resize',{
-                            width: window.innerWidth/4
+                        $('#pos-layout').layout('panel','south').panel('resize',{
+                            height: window.innerHeight/2
                         });
                         $('#pos-layout').layout('resize');
                         //$('#pos-layout').layout('expand','east');
@@ -654,6 +703,8 @@ span.combo{
                         obj.data[0].satuan3=obj.data[0].itm_satuan3;
                         obj.data[0].satuan3hpp=obj.data[0].itm_satuan3hpp;
                         obj.data[0].satuan0of1=1;
+                        obj.data[0].satuan2of1=obj.data[0].satuan2of1;
+                        obj.data[0].satuan3of1=obj.data[0].satuan3of1;
                         obj.data[0].id=obj.data[0].itm_id;
                         obj.data[0].nama=obj.data[0].itm_nama;
                         obj.data[0].tipe=1;
@@ -666,7 +717,8 @@ span.combo{
                         if(itemflag==0){
                             if(parseInt(obj.data[0].itm_stok)>0)
                             {
-                                globalharga+=parseInt(obj.data[0].satuan1hrg)
+                                tempglobalharga=globalharga;
+                                globalharga=parseInt($('#pos-total').textbox('getValue'))+parseInt(obj.data[0].satuan1hrg)
                                 globalrow.push(obj.data[0]);
                                 $('#pos-total').textbox('setValue',globalharga);
                                 $('#pos-grid').datagrid('loadData',globalrow);
@@ -715,8 +767,8 @@ span.combo{
                             v.tipe=2;
                             globalnotif.push(v);
                         })
-                        $('#pos-layout').layout('panel','east').panel('resize',{
-                            width: window.innerWidth/4
+                        $('#pos-layout').layout('panel','south').panel('resize',{
+                            height: window.innerHeight/2
                         });
                         $('#pos-layout').layout('resize');
                         // $('#pos-layout').layout('expand','east');
@@ -746,7 +798,9 @@ span.combo{
                     q:value
                 },
                 function(data) {
+                    globalharga=0;
                     var obj=JSON.parse(data)
+                    var temp=0;
                     if(obj.data.length>1)
                     {
                         $('#searchitem').textbox('disable');
@@ -773,8 +827,8 @@ span.combo{
                             globalnotif.push(obj.data);
                             notifnama='';
                         })
-                        $('#pos-layout').layout('panel','east').panel('resize',{
-                            width: window.innerWidth/4
+                        $('#pos-layout').layout('panel','south').panel('resize',{
+                            height: window.innerHeight/2
                         });
                         $('#pos-layout').layout('resize');
                         // $('#pos-layout').layout('expand','east');
@@ -792,10 +846,27 @@ span.combo{
                         $.each(obj.data[0].notaitems,function(i,v){
                             v.disnom=0;
                             v.konvidx=0;
-                            v.total=parseInt(v.satuan1hrg)*(parseInt(v.qty))*(1-(v.diskon/100));
-                            v.satuan0hrg=v.satuan1hrg;
-                            v.satuan0=v.satuan1;
-                            v.satuan0hpp=v.satuan1hpp;
+                            //v.total=parseInt(v.satuan1hrg)*(parseInt(v.qty))*(1-(v.diskon/100));
+                            //temp=
+                            console.log(parseInt(v.total)/parseInt(v.qty))
+                            if(parseInt(v.total)/parseInt(v.qty)==parseInt(v.satuan1hrg)){
+                                v.satuan0hrg=v.satuan1hrg;
+                                v.satuan0=v.satuan1;
+                                v.satuan0hpp=v.satuan1hpp;
+                                v.satuan0of1=1
+                            }
+                            else if(parseInt(v.total)/parseInt(v.qty)==parseInt(v.satuan2hrg)){
+                                v.satuan0hrg=v.satuan2hrg;
+                                v.satuan0=v.satuan2;
+                                v.satuan0hpp=v.satuan2hpp;
+                                v.satuan0of1=v.satuan2of1;
+                            }
+                            else if(parseInt(v.total)/parseInt(v.qty)==parseInt(v.satuan3hrg)){
+                                v.satuan0hrg=v.satuan3hrg;
+                                v.satuan0=v.satuan3;
+                                v.satuan0hpp=v.satuan3hpp;
+                                v.satuan0of1=v.satuan3of1;
+                            }
                             v.id=v.itm_id;
                             v.nama=v.itm_nama;
                             v.dot_id=obj.data[0].dot_id
@@ -809,23 +880,6 @@ span.combo{
                         $('#pos-total').textbox('setValue',globalharga);
                         
                         $('#pos-grid').datagrid('loadData',globalrow);
-                        // $.each(globalrow,function(i,v){
-                        //     $.ajax({
-                        //         type:'POST',
-                        //         data:{lok_id:globalConfig.login_data.data.kas_lok_id,
-                        //         key_val:v.itm_nama
-                        //         },
-                        //         url:getRestAPI('item/read'),
-                        //         success:function(retval) {
-                        //             var obj = JSON.parse(retval);
-                        //             v.stok2=obj.data[0].itm_stok
-                        //             if(i==2)
-                        //             globalrow.pop();
-                        //         }
-                        //     });
-                        // })
-                        // $('#pos-grid').datagrid('loadData',globalrow);
-                        // console.log(globalrow[2])
                         $('#calculator').textbox('setValue','Dibayar=Rp.'+currencyFormat(globaluang)+',00')
                         $('#totalkurang').textbox('setValue',"kurang="+'Rp.'+currencyFormat(globalharga)+',00')
                         $('#pos-btn-now').linkbutton({text:currencyFormat(globalharga)});
@@ -882,8 +936,9 @@ span.combo{
                 if(itemflagnotif==0){
                     if(parseInt(row.itm_stok)>0)
                     {
+                        tempglobalharga=parseInt($('#pos-total').textbox('getValue'));
                         globalrow.push(row)
-                        globalharga=globalharga+parseInt(row.satuan1hrg);
+                        globalharga=parseInt($('#pos-total').textbox('getValue'))+parseInt(row.satuan0hrg);
                         $('#pos-grid').datagrid('loadData',globalrow);
                         globalnotif=[];
                         $('#notif-grid').datagrid('loadData',globalnotif);
@@ -932,8 +987,8 @@ span.combo{
                 $('#searchitem').searchbox('setValue','')
             }
             // $('#pos-layout').layout('collapse','east');
-            $('#pos-layout').layout('panel','east').panel('resize',{
-                width: 1
+            $('#pos-layout').layout('panel','south').panel('resize',{
+                height: 1
             });
             $('#pos-layout').layout('resize');
         } 
@@ -981,34 +1036,17 @@ span.combo{
             formatter: function(value, row) {return 'Rp.'+currencyFormat(row.total)+',00'}
         }]],
         data:globalrow,
-        // onLoadSuccess:function(data) {
-        //     console.log(data)
-        //     $.ajax({
-        //         type:'POST',
-        //         data:{lok_id:globalConfig.login_data.data.kas_lok_id,
-        //         key_val:data.itm_nama
-        //         },
-        //         url:getRestAPI('item/read'),
-        //         success:function(retval) {
-        //             var obj = JSON.parse(retval);
-                    
-        //             if(parseInt(obj.data[0].itm_stok)<=parseInt(data.qty))
-        //             console.log();
-        //             $('#pos-grid').datagrid('loadData',globalrow);
-        //         }
-        //     });
-        // },
         onSelect:function(index,row){
             console.log(row)
             $('#pos-qty').numberbox('setValue',parseInt(row.qty))
             $('#pos-dsc').numberbox('setValue',parseInt(row.diskon));
             globalsatuan=[];
             globalid=row.itm_id;
-            globalsatuan.push({"sat_id":1,"sat_nama":row.satuan1,"sat_hpp":row.satuan1hpp,"sat_hrg":row.satuan1hrg});
+            globalsatuan.push({"sat_id":1,"sat_nama":row.satuan1,"sat_hpp":row.satuan1hpp,"sat_hrg":row.satuan1hrg,"sat_total":globalharga,"sat_def":row.satuan0hrg});
             if(row.satuan2)
-            globalsatuan.push({"sat_id":2,"sat_nama":row.satuan2,"sat_hpp":row.satuan2hpp,"sat_hrg":row.satuan2hrg,"sat_of":row.satuan2of1});
+            globalsatuan.push({"sat_id":2,"sat_nama":row.satuan2,"sat_hpp":row.satuan2hpp,"sat_hrg":row.satuan2hrg,"sat_of":row.satuan2of1,"sat_total":globalharga,"sat_def":row.satuan0hrg});
             if(row.satuan3)
-            globalsatuan.push({"sat_id":3,"sat_nama":row.satuan3,"sat_hpp":row.satuan3hpp,"sat_hrg":row.satuan3hrg,"sat_of":row.satuan3of1});
+            globalsatuan.push({"sat_id":3,"sat_nama":row.satuan3,"sat_hpp":row.satuan3hpp,"sat_hrg":row.satuan3hrg,"sat_of":row.satuan3of1,"sat_total":globalharga,"sat_def":row.satuan0hrg});
             
             $('#pos-btn-satuan').combobox('loadData',globalsatuan);
             if(row.satuan0==row.satuan1)
@@ -1218,6 +1256,7 @@ span.combo{
         globalkembalian=0;
         globaluang=0;
         bayarflag=0;
+        tempglobalharga=0;
         $('#pos-bayar').text("BAYAR");
         $('#calculator').textbox('setValue',"Dibayar="+'Rp.'+currencyFormat(globaluang)+',00');
         $('#pos-grid').datagrid('loadData',globalrow);

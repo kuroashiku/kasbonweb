@@ -86,6 +86,9 @@
                         if((row.po_status.localeCompare('APPROVED'))==0){
                             status='Disetujui';
                         }
+                        else if((row.po_status.localeCompare('COMPLETED'))==0){
+                            status='Selesai';
+                        }
                         var items='';
                         $.each(row.poitems,function(i,v){
                             items=items+

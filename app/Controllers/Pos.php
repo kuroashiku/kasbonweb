@@ -40,4 +40,9 @@ class Pos extends Controller
     {
         return view('po_add_view');
     }
+    public function receive_add()
+    {
+        return view('receive_add_view');
+    }
 }
+

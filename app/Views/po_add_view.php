@@ -40,6 +40,11 @@
                             </tr>
                             <tr height="0%">
                                 <td style="white-space:nowrap;padding-bottom:5px;vertical-align:middle"
+                                    id="poa-form-satuan-label" width="19%">Satuan</td>
+                                <td style="white-space:nowrap" width="81%"><input id="poa-form-satuan"></td>
+                            </tr>
+                            <tr height="0%">
+                                <td style="white-space:nowrap;padding-bottom:5px;vertical-align:middle"
                                     id="poa-form-catatan-label" width="19%">Catatan</td>
                                 <td style="white-space:nowrap" width="81%"><input id="poa-form-catatan"></td>
                             </tr>
@@ -75,6 +80,7 @@
             var globalrowpoa=[];
             var globalnotifpoa=[];
             var globalhargapoa=0;
+            var globalsatuanpoa=[];
             var ul = $('#po-add-dlg').data('id');
             setTimeout(function(){
                 if(ul==1&&ul){
@@ -117,6 +123,33 @@
             $('#poa-form-catatan').textbox({
                 height:80,
                 multiline:true,
+            });
+            $('#poa-form-satuan').combobox({
+                width:96,
+                valueField:'sat_id',
+                textField:'sat_nama',
+                panelHeight:'auto',
+                iconCls:'',
+                data:[{"sat_id":0,"sat_nama":"Satuan"}],
+                onClick:function(row) {
+                    var selectedRow = $('#poa-grid').datagrid('getSelected');
+                    var indexRow = $('#poa-grid').datagrid('getRowIndex', selectedRow);
+                    $.each(globalrowpoa,function(i,v){
+                        if(v.itm_id==selectedRow.itm_id)
+                        {
+                            v.satuan0=row.sat_nama;
+                            v.total=row.sat_hrg;
+                            v.satuan0hrg=row.sat_hrg;
+                            v.satuan0hpp=row.sat_hpp;
+                            v.satuan0of1=row.sat_of?row.sat_of:1;
+                            v.qty=1;
+                        }
+                        console.log(row.sat_def)
+                        // globalharga=parseInt(globalharga)+v.total
+                    })
+                    $('#poa-grid').datagrid('loadData',globalrowpoa);
+                    $('#poa-grid').datagrid('selectRow',indexRow);
+                },
             });
             $('#notifpoa-label').textbox({
                 prompt:'Ditemukan multiitem',
@@ -213,6 +246,17 @@
                             obj.data[0].satuan1=obj.data[0].itm_satuan1;
                             obj.data[0].satuan1hpp=obj.data[0].itm_satuan1hpp;
                             obj.data[0].satuan0of1=1;
+                            obj.data[0].satuan2hrg=obj.data[0].itm_satuan2hrg;
+                            obj.data[0].satuan2=obj.data[0].itm_satuan2;
+                            obj.data[0].satuan2hpp=obj.data[0].itm_satuan2hpp;
+                            obj.data[0].satuan3hrg=obj.data[0].itm_satuan3hrg;
+                            obj.data[0].satuan3=obj.data[0].itm_satuan3;
+                            obj.data[0].satuan3hpp=obj.data[0].itm_satuan3hpp;
+                            obj.data[0].satuan2of1=obj.data[0].satuan2of1;
+                            obj.data[0].satuan3of1=obj.data[0].satuan3of1;
+                            obj.data[0].id=obj.data[0].itm_id;
+                            obj.data[0].nama=obj.data[0].itm_nama;
+                            obj.data[0].tipe=1;
                             $.each(globalrowpoa,function(i,v){
                                 if(v.itm_id==obj.data[0].itm_id)
                                 {
@@ -322,7 +366,20 @@
             data:globalrowpoa,
             onSelect:function(index,row){
                 console.log(row)
+                globalsatuanpoa=[];
+                globalsatuanpoa.push({"sat_id":1,"sat_nama":row.satuan1,"sat_hpp":row.satuan1hpp,"sat_hrg":row.satuan1hrg,"sat_total":globalharga,"sat_def":row.satuan0hrg});
+                if(row.satuan2)
+                globalsatuanpoa.push({"sat_id":2,"sat_nama":row.satuan2,"sat_hpp":row.satuan2hpp,"sat_hrg":row.satuan2hrg,"sat_of":row.satuan2of1,"sat_total":globalharga,"sat_def":row.satuan0hrg});
+                if(row.satuan3)
+                globalsatuanpoa.push({"sat_id":3,"sat_nama":row.satuan3,"sat_hpp":row.satuan3hpp,"sat_hrg":row.satuan3hrg,"sat_of":row.satuan3of1,"sat_total":globalharga,"sat_def":row.satuan0hrg});
                 
+                $('#poa-form-satuan').combobox('loadData',globalsatuanpoa);
+                if(row.satuan0==row.satuan1)
+                $('#poa-form-satuan').combobox('setText',row.satuan1);
+                else if(row.satuan0==row.satuan2)
+                $('#poa-form-satuan').combobox('setText',row.satuan2);
+                else if(row.satuan0==row.satuan3)
+                $('#poa-form-satuan').combobox('setText',row.satuan3);
             }
         });
         $('#notifpoa-grid').datagrid({
